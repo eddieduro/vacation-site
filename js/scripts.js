@@ -3,7 +3,6 @@ function Places(destination,season) {
   this.season= season;
   this.landmarks = [];
   this.activites= [];
-
 }
 
 Places.prototype.vacation = function () {
@@ -42,13 +41,21 @@ $(document).ready(function(){
     var newDestination = new Places(inputteddestination, inputtedseasons);
     var newLandmarks = new Landmarks(inputtedbeach, inputtedrestaurant);
     var newActivity = new Activites(inputtedindoor, inputtedoutdoor);
+    newDestination.landmarks.push(newLandmarks);
+    newDestination.activites.push(newActivity);
 
     $("ul#destinationResult").append("<li>" + newDestination.vacation() + "</li>");
 
     $("#destinationResult li").last().click(function(){
-    $(".show-destination").show();
-    $(".show-destination h2").text(newDestination.vacation());
-  });
+      $(".show-destination").show();
+      $(".show-destination h2").text(newDestination.vacation());
+      newDestination.landmarks.forEach(function(landmark) {
+        $("ul#landmarks").find('span').text(landmark.fullLandmark())
+      });
+      newDestination.activites.forEach(function(activity) {
+        $("ul#activities").find('span').text(activity.fullActivity())
+      });
+    });
   });
 
 });
