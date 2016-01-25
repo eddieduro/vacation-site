@@ -9,7 +9,7 @@ describe('Places', function () {
 
   it("adds the Vacation method to all places", function () {
     var testPlace = new Places ("Hawaii", "summer");
-    expect(testPlace.vacation()).to.equal("Hawaii summer");
+    expect(testPlace.vacation()).to.equal("Hawaii - summer");
   });
 });
 
